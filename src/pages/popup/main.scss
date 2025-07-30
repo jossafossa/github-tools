@@ -1,0 +1,17 @@
+:root {
+  // absolute values
+  --dark-gray: #151516;
+  --white: #fff;
+  --black: #0d0d0e;
+
+  // relative values
+  --background-color: var(--dark-gray);
+}
+
+body {
+  --color: var(--white);
+  --background-color: var(--dark-gray);
+
+  margin: 0;
+  padding: 0;
+}

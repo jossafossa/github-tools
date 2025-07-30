@@ -1,13 +1,13 @@
-import { resolve } from "path";
 import { type ManifestV3Export } from "@crxjs/vite-plugin";
-import { defineConfig, type BuildOptions } from "vite";
-import tsconfigPaths from "vite-tsconfig-paths";
-import { stripDevIcons, crxI18n } from "./custom-vite-plugins";
-import manifest from "./manifest.json";
-import devManifest from "./manifest.dev.json";
-import pkg from "./package.json";
-
 import preact from "@preact/preset-vite";
+import { resolve } from "path";
+import { type BuildOptions, defineConfig } from "vite";
+import tsconfigPaths from "vite-tsconfig-paths";
+
+import { crxI18n, stripDevIcons } from "./custom-vite-plugins";
+import devManifest from "./manifest.dev.json";
+import manifest from "./manifest.json";
+import pkg from "./package.json";
 
 const isDev = process.env.__DEV__ === "true";
 // set this flag to true, if you want localization support
@@ -19,16 +19,16 @@ export const baseManifest = {
   ...(isDev ? devManifest : ({} as ManifestV3Export)),
   ...(localize
     ? {
-        name: "__MSG_extName__",
-        description: "__MSG_extDescription__",
         default_locale: "en",
+        description: "__MSG_extDescription__",
+        name: "__MSG_extName__",
       }
     : {}),
 } as ManifestV3Export;
 
 export const baseBuildOptions: BuildOptions = {
-  sourcemap: isDev,
   emptyOutDir: !isDev,
+  sourcemap: isDev,
 };
 
 export default defineConfig({
