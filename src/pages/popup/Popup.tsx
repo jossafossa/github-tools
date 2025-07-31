@@ -1,4 +1,4 @@
-import { Settings } from "@/components";
+import { Settings } from "@/features";
 
 export const Popup = () => {
   return <Settings />;

@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  use-chrome-storage@1.3.2:
+    hash: 550a6517fc6740cbcecd38971e9167fea1a3462e67a6ad1ab3f6bb8b45ae1d62
+    path: patches/use-chrome-storage@1.3.2.patch
+
 importers:
 
   .:
@@ -14,6 +19,9 @@ importers:
       preact:
         specifier: ^10.27.0
         version: 10.27.0
+      use-chrome-storage:
+        specifier: ^1.3.2
+        version: 1.3.2(patch_hash=550a6517fc6740cbcecd38971e9167fea1a3462e67a6ad1ab3f6bb8b45ae1d62)(react@19.1.1)
       webextension-polyfill:
         specifier: ^0.12.0
         version: 0.12.0
@@ -30,6 +38,9 @@ importers:
       '@preact/preset-vite':
         specifier: ^2.10.2
         version: 2.10.2(@babel/core@7.28.0)(preact@10.27.0)(vite@6.3.5(@types/node@24.1.0)(sass-embedded@1.89.2)(sugarss@2.0.0))
+      '@stylistic/eslint-plugin':
+        specifier: ^5.2.2
+        version: 5.2.2(eslint@9.32.0)
       '@types/chrome':
         specifier: ^0.1.0
         version: 0.1.1
@@ -670,6 +681,12 @@ packages:
 
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
+
+  '@stylistic/eslint-plugin@5.2.2':
+    resolution: {integrity: sha512-bE2DUjruqXlHYP3Q2Gpqiuj2bHq7/88FnuaS0FjeGGLCy+X6a07bGVuwtiOYnPSLHR6jmx5Bwdv+j7l8H+G97A==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    peerDependencies:
+      eslint: '>=9.0.0'
 
   '@tsconfig/node10@1.0.11':
     resolution: {integrity: sha512-DcRjDCujK/kCk/cUe8Xz8ZSpm8mS3mNNpta+jGCA6USEDfktlNvm1+IuZ9eTcDbNk41BHwpHHeW+N1lKCz4zOw==}
@@ -3245,6 +3262,10 @@ packages:
     resolution: {integrity: sha512-XP8A9BT0CpRBD+NYLLeIhld/RqG9+gktUjW1FkE+Vm7OCinbG1SshcK5tb9ls4kzvjZr9mOQc7HYgBngEyPAXg==}
     engines: {node: '>=0.10.0'}
 
+  react@19.1.1:
+    resolution: {integrity: sha512-w8nqGImo45dmMIfljjMwOGtbmC/mk4CMYhWIicdSflH91J9TyCyczcPFXJzrZ/ZXcgGRFeP6BU0BEJTw6tZdfQ==}
+    engines: {node: '>=0.10.0'}
+
   read-pkg-up@3.0.0:
     resolution: {integrity: sha512-YFzFrVvpC6frF1sz8psoHDBGF7fLPc+llq/8NB43oagqWkx8ar5zYtsTORtOjw9W2RHLpWP+zTWwBvf1bCmcSw==}
     engines: {node: '>=4'}
@@ -4078,6 +4099,11 @@ packages:
     resolution: {integrity: sha512-Am1ousAhSLBeB9cG/7k7r2R0zj50uDRlZHPGbazid5s9rlF1F/QKYObEKSIunSjIOkJZqwRRLpvewjEkM7pSqg==}
     deprecated: Please see https://github.com/lydell/urix#deprecated
 
+  use-chrome-storage@1.3.2:
+    resolution: {integrity: sha512-8AONdHW7bo7t0PSypcMuSPUX8du37fdyqUuPKy6PVmXBEK6vVyvcKmlO6N7f/2ZuXvhmr1SemRD27qFxfElTtg==}
+    peerDependencies:
+      react: ^16.9.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
   use@3.1.1:
     resolution: {integrity: sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==}
     engines: {node: '>=0.10.0'}
@@ -4739,6 +4765,16 @@ snapshots:
     optional: true
 
   '@rtsao/scc@1.1.0': {}
+
+  '@stylistic/eslint-plugin@5.2.2(eslint@9.32.0)':
+    dependencies:
+      '@eslint-community/eslint-utils': 4.7.0(eslint@9.32.0)
+      '@typescript-eslint/types': 8.38.0
+      eslint: 9.32.0
+      eslint-visitor-keys: 4.2.1
+      espree: 10.4.0
+      estraverse: 5.3.0
+      picomatch: 4.0.3
 
   '@tsconfig/node10@1.0.11': {}
 
@@ -7599,6 +7635,8 @@ snapshots:
 
   react-refresh@0.13.0: {}
 
+  react@19.1.1: {}
+
   read-pkg-up@3.0.0:
     dependencies:
       find-up: 2.1.0
@@ -8648,6 +8686,10 @@ snapshots:
       punycode: 2.3.1
 
   urix@0.1.0: {}
+
+  use-chrome-storage@1.3.2(patch_hash=550a6517fc6740cbcecd38971e9167fea1a3462e67a6ad1ab3f6bb8b45ae1d62)(react@19.1.1):
+    dependencies:
+      react: 19.1.1
 
   use@3.1.1: {}
 
