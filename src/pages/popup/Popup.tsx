@@ -1,18 +1,5 @@
-import { Button } from "./components";
-import styles from "./Popup.module.scss";
+import { Settings } from "@/components";
 
 export const Popup = () => {
-  const test = {
-    bar: "baz",
-    baz: "qux",
-    foo: "bar",
-  };
-
-  console.log(test);
-
-  return (
-    <div className={styles.popup}>
-      <Button>My button</Button>
-    </div>
-  );
+  return <Settings />;
 };
