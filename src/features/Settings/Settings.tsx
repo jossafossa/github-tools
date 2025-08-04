@@ -1,6 +1,6 @@
 import type { JSX } from "preact/jsx-runtime";
 
-import { useSettings } from "@/api";
+import { type AvailableSettings, useSettings } from "@/api";
 import { Button, Fieldset, FormControl, Input, Toggle } from "@/components";
 
 import classes from "./Settings.module.scss";
@@ -16,8 +16,11 @@ export const Settings = () => {
     const newSettings = {
       copyButtons: {
         commitHashes: formData.get("copyButtons.commitHashes") === "on",
-        fileNames: formData.get("copyButtons.fileNames") === "on",
+        prNumbers: formData.get("copyButtons.prNumbers") === "on",
         rebaseSummaries: formData.get("copyButtons.rebaseSummaries") === "on",
+      },
+      debug: {
+        showLogs: formData.get("debug.showLogs") === "on",
       },
       disableMerge: {
         hasFixupsToSquash:
@@ -44,13 +47,39 @@ export const Settings = () => {
         ) as string,
         copyPrNumber: formData.get("shortcuts.copyPrNumber") as string,
       },
-    };
+      userSettings: {
+        testLabels: formData.get("userSettings.testLabels") as string,
+        username: formData.get("userSettings.username") as string,
+      },
+    } satisfies AvailableSettings;
 
     setSettings(newSettings);
   };
 
   return (
     <form class={classes.settings} onSubmit={handleSubmit}>
+      <Fieldset title="User settings">
+        <FormControl>
+          <FormControl.Label>Username</FormControl.Label>
+
+          <Input
+            name="userSettings.username"
+            type="text"
+            value={settings.userSettings.username}
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormControl.Label>Test label</FormControl.Label>
+
+          <Input
+            name="userSettings.testLabels"
+            type="text"
+            value={settings.userSettings.testLabels}
+          />
+        </FormControl>
+      </Fieldset>
+
       <Fieldset title="Disable merge">
         <FormControl>
           <FormControl.Label>Disable all</FormControl.Label>
@@ -82,20 +111,20 @@ export const Settings = () => {
 
       <Fieldset title="Copy buttons">
         <FormControl>
+          <FormControl.Label>PR numbers</FormControl.Label>
+
+          <Toggle
+            checked={settings.copyButtons.prNumbers}
+            name="copyButtons.prNumbers"
+          />
+        </FormControl>
+
+        <FormControl>
           <FormControl.Label>Commit hashes</FormControl.Label>
 
           <Toggle
             checked={settings.copyButtons.commitHashes}
             name="copyButtons.commitHashes"
-          />
-        </FormControl>
-
-        <FormControl>
-          <FormControl.Label>File names</FormControl.Label>
-
-          <Toggle
-            checked={settings.copyButtons.fileNames}
-            name="copyButtons.fileNames"
           />
         </FormControl>
 
@@ -196,6 +225,14 @@ export const Settings = () => {
             type="text"
             value={settings.shortcuts.copyPrNumber}
           />
+        </FormControl>
+      </Fieldset>
+
+      <Fieldset title="Debug">
+        <FormControl>
+          <FormControl.Label>Show logs</FormControl.Label>
+
+          <Toggle checked={settings.debug.showLogs} name="debug.showLogs" />
         </FormControl>
       </Fieldset>
 

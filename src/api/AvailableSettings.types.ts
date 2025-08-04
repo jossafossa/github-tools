@@ -1,8 +1,11 @@
 export type AvailableSettings = {
   copyButtons: {
     commitHashes: boolean;
-    fileNames: boolean;
+    prNumbers: boolean;
     rebaseSummaries: boolean;
+  };
+  debug: {
+    showLogs: boolean;
   };
   disableMerge: {
     hasFixupsToSquash: boolean;
@@ -25,5 +28,9 @@ export type AvailableSettings = {
   shortcuts: {
     copyCurrentBranch: string;
     copyPrNumber: string;
+  };
+  userSettings: {
+    testLabels: string;
+    username: string;
   };
 };

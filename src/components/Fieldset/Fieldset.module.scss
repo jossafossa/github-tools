@@ -1,1 +1,9 @@
-.fieldset { }
+.fieldset {
+  padding: 1rem;
+  background-color: var(--foreground-color);
+  border: none;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}

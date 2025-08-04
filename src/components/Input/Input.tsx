@@ -1,4 +1,4 @@
-import type { JSX } from "react";
+import type { JSX } from "preact";
 
 import { useFormControlContext } from "../FormControl";
 import classes from "./Input.module.scss";

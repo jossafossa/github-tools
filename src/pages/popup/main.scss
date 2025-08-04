@@ -1,17 +1,22 @@
 :root {
-  // absolute values
+  --medium-gray: #202022;
   --dark-gray: #151516;
   --white: #fff;
   --black: #0d0d0e;
+  --primary: #4a90e2;
+  --border-radius: 1rem;
+  --border-radius-small: 0.5rem;
 
-  // relative values
   --background-color: var(--dark-gray);
+  --foreground-color: var(--medium-gray);
+  --color: var(--white);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 body {
-  --color: var(--white);
-  --background-color: var(--dark-gray);
-
   margin: 0;
   padding: 0;
 }
