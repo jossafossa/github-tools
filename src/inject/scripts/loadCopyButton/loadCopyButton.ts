@@ -24,7 +24,7 @@ export const loadCopyButton = async () => {
 
   if (copyButtons.commitHashes) {
     const hashesElements = document.querySelectorAll(
-      ".js-details-container .text-right"
+      ".TimelineItem-body .text-right"
     );
 
     hashesElements.forEach((hashElement) => {
@@ -57,6 +57,19 @@ export const loadCopyButton = async () => {
       const copyButton = toElement(getCopyHTML(prNumber));
       copyButton.classList.add("ght-pr-button");
       prElement.append(copyButton);
+    });
+  }
+
+  if (copyButtons.files) {
+    const fileElements = document.querySelectorAll(
+      ".js-comment-container > summary a"
+    );
+
+    fileElements.forEach((fileElement) => {
+      const fileName = (fileElement as HTMLAnchorElement).innerText;
+      const copyButton = toElement(getCopyHTML(fileName));
+      copyButton.classList.add("ght-file-button");
+      fileElement.after(copyButton);
     });
   }
 };

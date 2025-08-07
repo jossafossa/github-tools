@@ -3,6 +3,7 @@ import type { AvailableSettings } from "./AvailableSettings.types";
 export const DEFAULT_SETTINGS: AvailableSettings = {
   copyButtons: {
     commitHashes: true,
+    files: true,
     prNumbers: true,
     rebaseSummaries: true,
   },
@@ -32,7 +33,7 @@ export const DEFAULT_SETTINGS: AvailableSettings = {
     copyPrNumber: "CMD+SHIFT+C",
   },
   userSettings: {
-    testLabel: "test",
+    testLabels: "test",
     username: "github-tools",
   },
 };

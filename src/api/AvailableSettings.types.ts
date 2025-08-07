@@ -1,6 +1,7 @@
 export type AvailableSettings = {
   copyButtons: {
     commitHashes: boolean;
+    files: boolean;
     prNumbers: boolean;
     rebaseSummaries: boolean;
   };

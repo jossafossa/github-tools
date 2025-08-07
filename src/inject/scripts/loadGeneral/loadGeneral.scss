@@ -1,0 +1,24 @@
+.ght-obvious-drafts [reviewable_state="draft"] {
+  outline: 10px solid red;
+}
+
+.ght-grey-out-dependabot .Box-row:has(a[title$="[bot]"]),
+.ght-grey-out-drafts .Box-row:has([aria-label^="Draft"]) {
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.ght-show-absolute-time relative-time {
+  --large-number: 1000;
+  font-size: calc(100% / var(--large-number));
+
+  &:after {
+    content: attr(title);
+    font-size: calc(100% * var(--large-number));
+    font-weight: normal;
+    color: var(--color-text-secondary);
+  }
+}

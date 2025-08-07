@@ -1,1 +1,14 @@
-.button { }
+.button {
+  height: 2rem;
+  background-color: var(--primary);
+  border: none;
+  padding: 0;
+  padding-inline: 1rem;
+  border-radius: 100px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--white);
+  font: inherit;
+  font-family: var(--secondary-font-family);
+}

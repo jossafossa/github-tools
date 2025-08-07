@@ -16,6 +16,7 @@ export const Settings = () => {
     const newSettings = {
       copyButtons: {
         commitHashes: formData.get("copyButtons.commitHashes") === "on",
+        files: formData.get("copyButtons.files") === "on",
         prNumbers: formData.get("copyButtons.prNumbers") === "on",
         rebaseSummaries: formData.get("copyButtons.rebaseSummaries") === "on",
       },
@@ -134,6 +135,15 @@ export const Settings = () => {
           <Toggle
             checked={settings.copyButtons.rebaseSummaries}
             name="copyButtons.rebaseSummaries"
+          />
+        </FormControl>
+
+        <FormControl>
+          <FormControl.Label>Files</FormControl.Label>
+
+          <Toggle
+            checked={settings.copyButtons.files}
+            name="copyButtons.files"
           />
         </FormControl>
       </Fieldset>
