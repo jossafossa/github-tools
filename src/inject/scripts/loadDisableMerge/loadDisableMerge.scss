@@ -1,0 +1,10 @@
+.ght-disable-merge .merge-pr button[data-variant="default"] {
+  opacity: 0.5;
+  position: relative;
+  &:after {
+    content: "";
+    inset: 0;
+    position: absolute;
+    cursor: not-allowed;
+  }
+}
