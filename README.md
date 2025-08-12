@@ -27,6 +27,7 @@
   - Show absolute time in relative time tags
   - Be able to wrap strings in the messages in `"..."` by selecting text and pressing ". This can also be done with ([{'
   - When you open a context menu press e to edit.
+  - Be allowed to filter on filetype in files changed
 - Add copy button to
   - file names
   - commit hashes
