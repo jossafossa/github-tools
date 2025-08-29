@@ -37,4 +37,7 @@
   - to copy PR number
 - Add stats to actions tab:
   - Total build time
+- Fun:
+  - Comment / File change ratio
+  
   
