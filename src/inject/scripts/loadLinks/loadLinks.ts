@@ -1,4 +1,4 @@
-import { log } from "@/api";
+import { log } from "~/api";
 
 import "./loadLinks.module.scss";
 

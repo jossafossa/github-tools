@@ -1,8 +1,11 @@
-import { type AvailableSettings, getSettings, log } from "@/api";
+import { type AvailableSettings, getSettings, log } from "~/api";
 
 import "./loadGeneral.scss";
 
 export const loadGeneral = async () => {
+  if (document.body.dataset.ghtGeneralLoaded) return;
+  log(`Loaded General`);
+
   const { general } = await getSettings();
 
   const classes = new Map<keyof AvailableSettings["general"], string>([
@@ -14,9 +17,10 @@ export const loadGeneral = async () => {
 
   for (const [setting, className] of classes) {
     if (general[setting]) {
+      if (document.body.classList.contains(className)) continue;
       document.body.classList.add(className);
     }
   }
 
-  log(`Loaded General`);
+  document.body.dataset.ghtGeneralLoaded = "true";
 };

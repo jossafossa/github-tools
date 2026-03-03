@@ -1,7 +1,7 @@
 import type { JSX } from "preact/jsx-runtime";
 
-import { type AvailableSettings, useSettings } from "@/api";
-import { Button, Fieldset, FormControl, Input, Toggle } from "@/components";
+import { type AvailableSettings, useSettings } from "~/api";
+import { Button, Fieldset, FormControl, Input, Toggle } from "~/components";
 
 import classes from "./Settings.module.scss";
 

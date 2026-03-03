@@ -1,4 +1,4 @@
-import { log } from "@/api";
+import { getSettings, log } from "~/api";
 
 import {
   loadCopyButton,
@@ -12,10 +12,13 @@ import {
 export const bootstrap = async () => {
   log("injecting scripts");
 
-  loadDisableMerge();
-  loadCopyButton();
-  loadDocumentTitle();
-  loadShortcuts();
-  loadLinks();
-  loadGeneral();
+  setInterval(async () => {
+    const { general } = await getSettings();
+    loadDisableMerge();
+    loadCopyButton();
+    loadDocumentTitle();
+    loadShortcuts();
+    loadLinks();
+    loadGeneral();
+  }, 100);
 };

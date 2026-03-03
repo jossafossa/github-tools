@@ -1,4 +1,4 @@
-import { getSettings } from "@/api";
+import { getSettings } from "~/api";
 
 import { getPrLabels } from "../getPrLabels";
 

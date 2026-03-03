@@ -17,8 +17,10 @@ export const getExtensionStorage = async <T>(key: string, initialValue: T) => {
   try {
     const result = await browser.storage.local.get(key);
     if (result[key] !== undefined) {
-      cache[key] = result[key];
-      return result[key] as T;
+      // Clone the value to make it extensible (browser.storage returns frozen objects)
+      const clonedValue = JSON.parse(JSON.stringify(result[key]));
+      cache[key] = clonedValue;
+      return { ...initialValue, ...clonedValue } as T;
     }
     return initialValue;
   } catch (error) {

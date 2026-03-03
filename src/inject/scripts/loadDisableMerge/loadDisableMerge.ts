@@ -1,4 +1,4 @@
-import { getSettings } from "@/api";
+import { getSettings, log } from "~/api";
 
 import "./loadDisableMerge.scss";
 
@@ -12,6 +12,9 @@ const getMessagesElement = () => {
 };
 
 export const loadDisableMerge = async () => {
+  if (document.body.dataset.disableMerge) return;
+  log(`Loaded DisableMerge`);
+
   const { disableMerge } = await getSettings();
   const messages = getMessagesElement();
 
@@ -23,4 +26,6 @@ export const loadDisableMerge = async () => {
     document.body.classList.add("ght-disable-merge");
     insertMessage("Merge is disabled by settings");
   }
+
+  document.body.dataset.disableMerge = "true";
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "preact/hooks";
 import browser from "webextension-polyfill";
 
-import { getExtensionStorage, setExtensionStorage } from "@/api/utils";
+import { getExtensionStorage, setExtensionStorage } from "~/api/utils";
 
 export function useExtensionStorage<T>(
   key: string,
@@ -11,7 +11,9 @@ export function useExtensionStorage<T>(
 
   useEffect(() => {
     async function loadValue() {
-      setValue(await getExtensionStorage(key, initialValue));
+      const storedValue = await getExtensionStorage(key, initialValue);
+      // Clone the value to make it extensible (browser.storage returns frozen objects)
+      setValue(JSON.parse(JSON.stringify(storedValue)));
     }
     loadValue();
   }, [key, initialValue]);
@@ -22,7 +24,8 @@ export function useExtensionStorage<T>(
       areaName: string
     ) => {
       if (areaName === "local" && changes[key]) {
-        setValue(changes[key].newValue as T);
+        // Clone the value to make it extensible (browser.storage returns frozen objects)
+        setValue(JSON.parse(JSON.stringify(changes[key].newValue)));
       }
     };
     browser.storage.onChanged.addListener(handleStorageChange);

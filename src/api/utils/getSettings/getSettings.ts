@@ -1,7 +1,7 @@
 import {
   DEFAULT_SETTINGS,
   SETTINGS_KEY,
-} from "@/api/AvailableSettings.default";
+} from "~/api/AvailableSettings.default";
 
 import { getExtensionStorage } from "../getExtensionStorage";
 
