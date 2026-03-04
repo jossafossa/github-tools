@@ -1,5 +1,4 @@
-import { createContext } from "preact";
-import { useContext } from "preact/compat";
+import { createContext, useContext } from "react";
 
 type FormControlContextProps =
   | undefined

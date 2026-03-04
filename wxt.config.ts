@@ -6,12 +6,4 @@ export default defineConfig({
   manifest: {
     permissions: ["storage"],
   },
-  vite: () => ({
-    resolve: {
-      alias: {
-        react: "preact/compat",
-        "react-dom": "preact/compat",
-      },
-    },
-  }),
 });

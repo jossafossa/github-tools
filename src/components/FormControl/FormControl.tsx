@@ -1,6 +1,4 @@
-import type { PropsWithChildren } from "preact/compat";
-
-import { useId } from "react";
+import { type PropsWithChildren, useId } from "react";
 
 import classes from "./FormControl.module.scss";
 import { FormControlContext } from "./FormControlContext";

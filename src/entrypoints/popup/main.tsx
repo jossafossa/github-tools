@@ -1,5 +1,6 @@
-import { render } from "preact";
+import { createRoot } from "react-dom/client";
 import { Popup } from "./Popup";
 import "./main.scss";
 
-render(<Popup />, document.getElementById("app")!);
+const root = createRoot(document.getElementById("app")!);
+root.render(<Popup />);
