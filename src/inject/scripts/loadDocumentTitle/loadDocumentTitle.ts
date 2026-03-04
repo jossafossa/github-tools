@@ -1,7 +1,7 @@
-import { log } from "~/api";
+import { type AvailableSettings, log } from "~/api";
 import { getPrStatus, SELECTORS } from "../../utils";
 
-export const loadDocumentTitle = async () => {
+export const loadDocumentTitle = async (settings: AvailableSettings) => {
   if (document.body.dataset.ghtDocumentTitleInitialized) return;
 
   log(`Loaded DocumentTitle`);
@@ -12,14 +12,22 @@ export const loadDocumentTitle = async () => {
 
   if (!status) return;
 
-  document.title = `${status}${document.title}`;
+  // Use the custom prefix from settings based on the status
+  let prefix = status;
+  if (status.includes("MERGED") && settings.documentTitleMergedPrefix) {
+    prefix = settings.documentTitleMergedPrefix;
+  } else if (status.includes("TEST") && settings.documentTitleTestPrefix) {
+    prefix = settings.documentTitleTestPrefix;
+  }
+
+  document.title = `${prefix}${document.title}`;
 
   const title = document.querySelector(SELECTORS.PAGE_TITLE);
 
   if (!title) return;
 
-  console.log(`${status} ${title.innerHTML}`);
-  title.innerHTML = `${status} ${title.innerHTML}`;
+  console.log(`${prefix} ${title.innerHTML}`);
+  title.innerHTML = `${prefix} ${title.innerHTML}`;
 
   document.body.dataset.ghtDocumentTitleInitialized = "true";
 };

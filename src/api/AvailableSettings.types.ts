@@ -1,37 +1,36 @@
 export type AvailableSettings = {
-  copyButtons: {
-    commitHashes: boolean;
-    files: boolean;
-    prNumbers: boolean;
-    rebaseSummaries: boolean;
-  };
-  debug: {
-    showLogs: boolean;
-  };
-  disableMerge: {
-    hasFixupsToSquash: boolean;
-    notOwner: boolean;
-    override: boolean;
-  };
-  documentTitle: {
-    merged: string;
-    test: string;
-  };
-  general: {
-    greyOutDependabot: boolean;
-    greyOutDrafts: boolean;
-    obviousDrafts: boolean;
-    showAbsoluteTime: boolean;
-  };
-  links: {
-    actions: boolean;
-  };
-  shortcuts: {
-    copyCurrentBranch: string;
-    copyPrNumber: string;
-  };
-  userSettings: {
-    testLabels: string;
-    username: string;
-  };
+  // Copy features
+  copyButtonCommitHashes: boolean;
+  copyButtonFiles: boolean;
+  copyButtonPrNumbers: boolean;
+  copyButtonRebaseSummaries: boolean;
+  
+  // UI tweaks
+  greyOutDependabot: boolean;
+  greyOutDrafts: boolean;
+  showObviousDrafts: boolean;
+  showAbsoluteTime: boolean;
+  
+  // Document titles
+  documentTitleMergedPrefix: string;
+  documentTitleTestPrefix: string;
+  
+  // Merge protection
+  disableMergeAll: boolean;
+  disableMergeForNonOwners: boolean;
+  disableMergeWithFixups: boolean;
+  
+  // Navigation
+  addActionLinks: boolean;
+  
+  // Shortcuts
+  shortcutCopyCurrentBranch: string;
+  shortcutCopyPrNumber: string;
+  
+  // Debug
+  enableDebugLogging: boolean;
+  
+  // User
+  userGithubUsername: string;
+  userTestLabels: string;
 };

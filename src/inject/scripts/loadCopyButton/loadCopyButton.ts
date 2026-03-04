@@ -1,4 +1,4 @@
-import { getSettings, log } from "~/api";
+import { type AvailableSettings, log } from "~/api";
 
 import "./loadCopyButton.scss";
 import { SELECTORS } from "~/inject/utils/selectors";
@@ -19,14 +19,12 @@ const toElement = (html: string): HTMLElement => {
   return template.content.firstElementChild as HTMLElement;
 };
 
-export const loadCopyButton = async () => {
+export const loadCopyButton = (settings: AvailableSettings) => {
   if (document.body.dataset.ghtCopyButtonInitialized) return;
 
   log(`Loaded CopyButton`);
 
-  const { copyButtons } = await getSettings();
-
-  if (copyButtons.commitHashes) {
+  if (settings.copyButtonCommitHashes) {
     const hashesElements = document.querySelectorAll(SELECTORS.COMMIT_HASH);
 
     hashesElements.forEach((hashElement) => {
@@ -36,7 +34,7 @@ export const loadCopyButton = async () => {
     });
   }
 
-  if (copyButtons.rebaseSummaries) {
+  if (settings.copyButtonRebaseSummaries) {
     const rebaseElements = document.querySelectorAll(SELECTORS.REBASE_SUMMARY);
 
     rebaseElements.forEach((rebaseElement) => {
@@ -47,7 +45,7 @@ export const loadCopyButton = async () => {
     });
   }
 
-  if (copyButtons.prNumbers) {
+  if (settings.copyButtonPrNumbers) {
     const prElements = document.querySelectorAll(SELECTORS.PR_NUMBER);
 
     prElements.forEach((prElement) => {
@@ -58,7 +56,7 @@ export const loadCopyButton = async () => {
     });
   }
 
-  if (copyButtons.files) {
+  if (settings.copyButtonFiles) {
     const fileElements = document.querySelectorAll(SELECTORS.FILE_NAME);
 
     fileElements.forEach((fileElement) => {

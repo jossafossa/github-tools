@@ -1,41 +1,40 @@
 import type { AvailableSettings } from "./AvailableSettings.types";
 
 export const DEFAULT_SETTINGS: AvailableSettings = {
-  copyButtons: {
-    commitHashes: true,
-    files: true,
-    prNumbers: true,
-    rebaseSummaries: true,
-  },
-  debug: {
-    showLogs: false,
-  },
-  disableMerge: {
-    hasFixupsToSquash: true,
-    notOwner: true,
-    override: true,
-  },
-  documentTitle: {
-    merged: "[MERGED]",
-    test: "[TEST]",
-  },
-  general: {
-    greyOutDependabot: true,
-    greyOutDrafts: true,
-    obviousDrafts: true,
-    showAbsoluteTime: true,
-  },
-  links: {
-    actions: true,
-  },
-  shortcuts: {
-    copyCurrentBranch: "CMD+SHIFT+C",
-    copyPrNumber: "CMD+SHIFT+C",
-  },
-  userSettings: {
-    testLabels: "test",
-    username: "github-tools",
-  },
+  // Copy features
+  copyButtonCommitHashes: true,
+  copyButtonFiles: true,
+  copyButtonPrNumbers: true,
+  copyButtonRebaseSummaries: true,
+  
+  // UI tweaks
+  greyOutDependabot: true,
+  greyOutDrafts: true,
+  showObviousDrafts: true,
+  showAbsoluteTime: true,
+  
+  // Document titles
+  documentTitleMergedPrefix: "[MERGED]",
+  documentTitleTestPrefix: "[TEST]",
+  
+  // Merge protection
+  disableMergeAll: true,
+  disableMergeForNonOwners: true,
+  disableMergeWithFixups: true,
+  
+  // Navigation
+  addActionLinks: true,
+  
+  // Shortcuts
+  shortcutCopyCurrentBranch: "CMD+SHIFT+C",
+  shortcutCopyPrNumber: "CMD+SHIFT+P",
+  
+  // Debug
+  enableDebugLogging: false,
+  
+  // User
+  userGithubUsername: "github-tools",
+  userTestLabels: "test",
 };
 
 export const SETTINGS_KEY = "settings";

@@ -13,46 +13,42 @@ export const Settings = () => {
 
     const formData = new FormData(event.currentTarget);
 
-    const newSettings = {
-      copyButtons: {
-        commitHashes: formData.get("copyButtons.commitHashes") === "on",
-        files: formData.get("copyButtons.files") === "on",
-        prNumbers: formData.get("copyButtons.prNumbers") === "on",
-        rebaseSummaries: formData.get("copyButtons.rebaseSummaries") === "on",
-      },
-      debug: {
-        showLogs: formData.get("debug.showLogs") === "on",
-      },
-      disableMerge: {
-        hasFixupsToSquash:
-          formData.get("disableMerge.hasFixupsToSquash") === "on",
-        notOwner: formData.get("disableMerge.notOwner") === "on",
-        override: formData.get("disableMerge.override") === "on",
-      },
-      documentTitle: {
-        merged: formData.get("documentTitle.merged") as string,
-        test: formData.get("documentTitle.test") as string,
-      },
-      general: {
-        greyOutDependabot: formData.get("general.greyOutDependabot") === "on",
-        greyOutDrafts: formData.get("general.greyOutDrafts") === "on",
-        obviousDrafts: formData.get("general.obviousDrafts") === "on",
-        showAbsoluteTime: formData.get("general.showAbsoluteTime") === "on",
-      },
-      links: {
-        actions: formData.get("links.actions") === "on",
-      },
-      shortcuts: {
-        copyCurrentBranch: formData.get(
-          "shortcuts.copyCurrentBranch"
-        ) as string,
-        copyPrNumber: formData.get("shortcuts.copyPrNumber") as string,
-      },
-      userSettings: {
-        testLabels: formData.get("userSettings.testLabels") as string,
-        username: formData.get("userSettings.username") as string,
-      },
-    } satisfies AvailableSettings;
+    const newSettings: AvailableSettings = {
+      // Copy features
+      copyButtonCommitHashes: formData.get("copyButtonCommitHashes") === "on",
+      copyButtonFiles: formData.get("copyButtonFiles") === "on",
+      copyButtonPrNumbers: formData.get("copyButtonPrNumbers") === "on",
+      copyButtonRebaseSummaries: formData.get("copyButtonRebaseSummaries") === "on",
+      
+      // UI tweaks
+      greyOutDependabot: formData.get("greyOutDependabot") === "on",
+      greyOutDrafts: formData.get("greyOutDrafts") === "on",
+      showObviousDrafts: formData.get("showObviousDrafts") === "on",
+      showAbsoluteTime: formData.get("showAbsoluteTime") === "on",
+      
+      // Document titles
+      documentTitleMergedPrefix: formData.get("documentTitleMergedPrefix") as string,
+      documentTitleTestPrefix: formData.get("documentTitleTestPrefix") as string,
+      
+      // Merge protection
+      disableMergeAll: formData.get("disableMergeAll") === "on",
+      disableMergeForNonOwners: formData.get("disableMergeForNonOwners") === "on",
+      disableMergeWithFixups: formData.get("disableMergeWithFixups") === "on",
+      
+      // Navigation
+      addActionLinks: formData.get("addActionLinks") === "on",
+      
+      // Shortcuts
+      shortcutCopyCurrentBranch: formData.get("shortcutCopyCurrentBranch") as string,
+      shortcutCopyPrNumber: formData.get("shortcutCopyPrNumber") as string,
+      
+      // Debug
+      enableDebugLogging: formData.get("enableDebugLogging") === "on",
+      
+      // User
+      userGithubUsername: formData.get("userGithubUsername") as string,
+      userTestLabels: formData.get("userTestLabels") as string,
+    };
 
     setSettings(newSettings);
   };
@@ -64,9 +60,9 @@ export const Settings = () => {
           <FormControl.Label>Username</FormControl.Label>
 
           <Input
-            name="userSettings.username"
+            name="userGithubUsername"
             type="text"
-            value={settings.userSettings.username}
+            value={settings.userGithubUsername}
           />
         </FormControl>
 
@@ -74,38 +70,38 @@ export const Settings = () => {
           <FormControl.Label>Test label</FormControl.Label>
 
           <Input
-            name="userSettings.testLabels"
+            name="userTestLabels" 
             type="text"
-            value={settings.userSettings.testLabels}
+            value={settings.userTestLabels}
           />
         </FormControl>
       </Fieldset>
 
-      <Fieldset title="Disable merge">
+      <Fieldset title="Merge protection">
         <FormControl>
           <FormControl.Label>Disable all</FormControl.Label>
 
           <Toggle
-            checked={settings.disableMerge.override}
-            name="disableMerge.override"
+            checked={settings.disableMergeAll}
+            name="disableMergeAll"
           />
         </FormControl>
 
         <FormControl>
-          <FormControl.Label>Disable foreign</FormControl.Label>
+          <FormControl.Label>Disable for non-owners</FormControl.Label>
 
           <Toggle
-            checked={settings.disableMerge.notOwner}
-            name="disableMerge.notOwner"
+            checked={settings.disableMergeForNonOwners}
+            name="disableMergeForNonOwners"
           />
         </FormControl>
 
         <FormControl>
-          <FormControl.Label>Disable when fixups</FormControl.Label>
+          <FormControl.Label>Disable with fixups</FormControl.Label>
 
           <Toggle
-            checked={settings.disableMerge.hasFixupsToSquash}
-            name="disableMerge.hasFixupsToSquash"
+            checked={settings.disableMergeWithFixups}
+            name="disableMergeWithFixups"
           />
         </FormControl>
       </Fieldset>
@@ -115,8 +111,8 @@ export const Settings = () => {
           <FormControl.Label>PR numbers</FormControl.Label>
 
           <Toggle
-            checked={settings.copyButtons.prNumbers}
-            name="copyButtons.prNumbers"
+            checked={settings.copyButtonPrNumbers}
+            name="copyButtonPrNumbers"
           />
         </FormControl>
 
@@ -124,8 +120,8 @@ export const Settings = () => {
           <FormControl.Label>Commit hashes</FormControl.Label>
 
           <Toggle
-            checked={settings.copyButtons.commitHashes}
-            name="copyButtons.commitHashes"
+            checked={settings.copyButtonCommitHashes}
+            name="copyButtonCommitHashes"
           />
         </FormControl>
 
@@ -133,8 +129,8 @@ export const Settings = () => {
           <FormControl.Label>Rebase summaries</FormControl.Label>
 
           <Toggle
-            checked={settings.copyButtons.rebaseSummaries}
-            name="copyButtons.rebaseSummaries"
+            checked={settings.copyButtonRebaseSummaries}
+            name="copyButtonRebaseSummaries"
           />
         </FormControl>
 
@@ -142,41 +138,41 @@ export const Settings = () => {
           <FormControl.Label>Files</FormControl.Label>
 
           <Toggle
-            checked={settings.copyButtons.files}
-            name="copyButtons.files"
+            checked={settings.copyButtonFiles}
+            name="copyButtonFiles"
           />
         </FormControl>
       </Fieldset>
 
       <Fieldset title="Document title">
         <FormControl>
-          <FormControl.Label>Merged</FormControl.Label>
+          <FormControl.Label>Merged prefix</FormControl.Label>
 
           <Input
-            name="documentTitle.merged"
+            name="documentTitleMergedPrefix"
             type="text"
-            value={settings.documentTitle.merged}
+            value={settings.documentTitleMergedPrefix}
           />
         </FormControl>
 
         <FormControl>
-          <FormControl.Label>Test</FormControl.Label>
+          <FormControl.Label>Test prefix</FormControl.Label>
 
           <Input
-            name="documentTitle.test"
+            name="documentTitleTestPrefix"
             type="text"
-            value={settings.documentTitle.test}
+            value={settings.documentTitleTestPrefix}
           />
         </FormControl>
       </Fieldset>
 
-      <Fieldset title="General">
+      <Fieldset title="UI Tweaks">
         <FormControl>
           <FormControl.Label>Grey out dependabot</FormControl.Label>
 
           <Toggle
-            checked={settings.general.greyOutDependabot}
-            name="general.greyOutDependabot"
+            checked={settings.greyOutDependabot}
+            name="greyOutDependabot"
           />
         </FormControl>
 
@@ -184,17 +180,17 @@ export const Settings = () => {
           <FormControl.Label>Grey out drafts</FormControl.Label>
 
           <Toggle
-            checked={settings.general.greyOutDrafts}
-            name="general.greyOutDrafts"
+            checked={settings.greyOutDrafts}
+            name="greyOutDrafts"
           />
         </FormControl>
 
         <FormControl>
-          <FormControl.Label>Obvious drafts</FormControl.Label>
+          <FormControl.Label>Show obvious drafts</FormControl.Label>
 
           <Toggle
-            checked={settings.general.obviousDrafts}
-            name="general.obviousDrafts"
+            checked={settings.showObviousDrafts}
+            name="showObviousDrafts"
           />
         </FormControl>
 
@@ -202,17 +198,17 @@ export const Settings = () => {
           <FormControl.Label>Show absolute time</FormControl.Label>
 
           <Toggle
-            checked={settings.general.showAbsoluteTime}
-            name="general.showAbsoluteTime"
+            checked={settings.showAbsoluteTime}
+            name="showAbsoluteTime"
           />
         </FormControl>
       </Fieldset>
 
-      <Fieldset title="Links">
+      <Fieldset title="Navigation">
         <FormControl>
-          <FormControl.Label>Actions</FormControl.Label>
+          <FormControl.Label>Add action links</FormControl.Label>
 
-          <Toggle checked={settings.links.actions} name="links.actions" />
+          <Toggle checked={settings.addActionLinks} name="addActionLinks" />
         </FormControl>
       </Fieldset>
 
@@ -221,9 +217,9 @@ export const Settings = () => {
           <FormControl.Label>Copy current branch</FormControl.Label>
 
           <Input
-            name="shortcuts.copyCurrentBranch"
+            name="shortcutCopyCurrentBranch"
             type="text"
-            value={settings.shortcuts.copyCurrentBranch}
+            value={settings.shortcutCopyCurrentBranch}
           />
         </FormControl>
 
@@ -231,18 +227,18 @@ export const Settings = () => {
           <FormControl.Label>Copy PR number</FormControl.Label>
 
           <Input
-            name="shortcuts.copyPrNumber"
+            name="shortcutCopyPrNumber"
             type="text"
-            value={settings.shortcuts.copyPrNumber}
+            value={settings.shortcutCopyPrNumber}
           />
         </FormControl>
       </Fieldset>
 
       <Fieldset title="Debug">
         <FormControl>
-          <FormControl.Label>Show logs</FormControl.Label>
+          <FormControl.Label>Enable debug logging</FormControl.Label>
 
-          <Toggle checked={settings.debug.showLogs} name="debug.showLogs" />
+          <Toggle checked={settings.enableDebugLogging} name="enableDebugLogging" />
         </FormControl>
       </Fieldset>
 
