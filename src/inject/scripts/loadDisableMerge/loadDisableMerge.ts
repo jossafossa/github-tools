@@ -13,7 +13,6 @@ const getMessagesElement = () => {
 
 export const loadDisableMerge = (settings: AvailableSettings) => {
   if (document.body.dataset.disableMerge) return;
-  log(`Loaded DisableMerge`);
 
   const messages = getMessagesElement();
 
@@ -21,10 +20,15 @@ export const loadDisableMerge = (settings: AvailableSettings) => {
     messages.messages = [message];
   };
 
-  if (settings.disableMergeAll || settings.disableMergeForNonOwners || settings.disableMergeWithFixups) {
+  if (
+    settings.disableMergeAll ||
+    settings.disableMergeForNonOwners ||
+    settings.disableMergeWithFixups
+  ) {
     document.body.classList.add("ght-disable-merge");
     insertMessage("Merge is disabled by settings");
   }
 
   document.body.dataset.disableMerge = "true";
+  log(`Loaded DisableMerge`);
 };

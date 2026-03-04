@@ -1,0 +1,56 @@
+{
+  "title": "Settings",
+  "loading": "Loading...",
+  "save": "Save",
+  "merge_protection": {
+    "title": "Merge protection",
+    "username": "Username",
+    "disable_all": "Disable all",
+    "disable_for_non_owners": "Disable for non-owners",
+    "disable_with_fixups": "Disable with fixups"
+  },
+  "copy_buttons": {
+    "title": "Copy buttons",
+    "pr_numbers": "PR numbers",
+    "commit_hashes": "Commit hashes",
+    "rebase_summaries": "Rebase summaries",
+    "files": "Files"
+  },
+  "document_title": {
+    "title": "Document title",
+    "test_label": "Test label",
+    "merged_prefix": "Merged prefix",
+    "test_prefix": "Test prefix"
+  },
+  "ui_tweaks": {
+    "title": "UI Tweaks",
+    "grey_out_dependabot": "Grey out dependabot",
+    "grey_out_drafts": "Grey out drafts",
+    "show_obvious_drafts": "Show obvious drafts",
+    "show_absolute_time": "Show absolute time"
+  },
+  "navigation": {
+    "title": "Navigation",
+    "add_action_links": "Add action links"
+  },
+  "shortcuts": {
+    "title": "Shortcuts",
+    "copy_current_branch": "Copy current branch",
+    "copy_pr_number": "Copy PR number"
+  },
+  "debug": {
+    "title": "Debug",
+    "enable_debug_logging": "Enable debug logging"
+  },
+  "localization": {
+    "title": "Language",
+    "language": "Language (en/nl)"
+  },
+  "validation": {
+    "username_required": "Username is required",
+    "test_label_required": "Test label is required",
+    "merged_prefix_required": "Merged prefix is required",
+    "test_prefix_required": "Test prefix is required",
+    "language_required": "Language is required"
+  }
+}

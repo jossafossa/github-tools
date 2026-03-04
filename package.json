@@ -17,9 +17,13 @@
   "dependencies": {
     "classnames": "^2.5.1",
     "formik": "^2.4.9",
+    "i18next": "^25.8.13",
+    "i18next-http-backend": "^3.0.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "webextension-polyfill": "^0.12.0"
+    "react-i18next": "^16.5.4",
+    "webextension-polyfill": "^0.12.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "^25.3.3",

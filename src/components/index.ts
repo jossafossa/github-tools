@@ -6,3 +6,5 @@ export * from "./Toggle";
 /* PLOP_INJECT_EXPORT */
 export * from "./Message";
 export * from "./Messages";
+export * from "./FieldInput";
+export * from "./Select";

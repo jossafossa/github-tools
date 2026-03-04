@@ -5,15 +5,16 @@ import { getPrLabels } from "../getPrLabels";
 export const getPrStatus = async () => {
   const labels = getPrLabels();
   const isMerged = !!document.querySelector(".State.State--merged");
-  const { documentTitle, userSettings } = await getSettings();
+  const { userTestLabels, documentTitleTestPrefix, documentTitleMergedPrefix } =
+    await getSettings();
 
-  const testLabels = userSettings.testLabels.split(";") || [];
+  const testLabels = userTestLabels.split(",") || [];
 
   if (testLabels.some((label) => labels.includes(label))) {
-    return documentTitle.test;
+    return documentTitleTestPrefix;
   }
 
   if (isMerged) {
-    return documentTitle.merged;
+    return documentTitleMergedPrefix;
   }
 };

@@ -1,0 +1,56 @@
+{
+  "title": "Instellingen",
+  "loading": "Laden...",
+  "save": "Opslaan",
+  "merge_protection": {
+    "title": "Merge beveiliging",
+    "username": "Gebruikersnaam",
+    "disable_all": "Alles uitschakelen",
+    "disable_for_non_owners": "Uitschakelen voor niet-eigenaren",
+    "disable_with_fixups": "Uitschakelen bij fixups"
+  },
+  "copy_buttons": {
+    "title": "Kopieer knoppen",
+    "pr_numbers": "PR nummers",
+    "commit_hashes": "Commit hashes",
+    "rebase_summaries": "Rebase samenvattingen",
+    "files": "Bestanden"
+  },
+  "document_title": {
+    "title": "Document titel",
+    "test_label": "Test label",
+    "merged_prefix": "Merged voorvoegsel",
+    "test_prefix": "Test voorvoegsel"
+  },
+  "ui_tweaks": {
+    "title": "UI Aanpassingen",
+    "grey_out_dependabot": "Dependabot grijs maken",
+    "grey_out_drafts": "Drafts grijs maken",
+    "show_obvious_drafts": "Duidelijke drafts tonen",
+    "show_absolute_time": "Absolute tijd tonen"
+  },
+  "navigation": {
+    "title": "Navigatie",
+    "add_action_links": "Actie links toevoegen"
+  },
+  "shortcuts": {
+    "title": "Sneltoetsen",
+    "copy_current_branch": "Huidige branch kopiëren",
+    "copy_pr_number": "PR nummer kopiëren"
+  },
+  "debug": {
+    "title": "Debug",
+    "enable_debug_logging": "Debug logging inschakelen"
+  },
+  "localization": {
+    "title": "Taal",
+    "language": "Taal (en/nl)"
+  },
+  "validation": {
+    "username_required": "Gebruikersnaam is verplicht",
+    "test_label_required": "Test label is verplicht",
+    "merged_prefix_required": "Merged voorvoegsel is verplicht",
+    "test_prefix_required": "Test voorvoegsel is verplicht",
+    "language_required": "Taal is verplicht"
+  }
+}

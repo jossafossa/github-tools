@@ -1,6 +1,7 @@
 .formControl {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem 1rem;
   justify-content: space-between;
 }

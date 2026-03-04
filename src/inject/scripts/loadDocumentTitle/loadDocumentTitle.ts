@@ -4,11 +4,7 @@ import { getPrStatus, SELECTORS } from "../../utils";
 export const loadDocumentTitle = async (settings: AvailableSettings) => {
   if (document.body.dataset.ghtDocumentTitleInitialized) return;
 
-  log(`Loaded DocumentTitle`);
-
   const status = await getPrStatus();
-
-  console.log({ status });
 
   if (!status) return;
 
@@ -26,8 +22,8 @@ export const loadDocumentTitle = async (settings: AvailableSettings) => {
 
   if (!title) return;
 
-  console.log(`${prefix} ${title.innerHTML}`);
   title.innerHTML = `${prefix} ${title.innerHTML}`;
 
   document.body.dataset.ghtDocumentTitleInitialized = "true";
+  log(`Loaded DocumentTitle`);
 };

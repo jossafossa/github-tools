@@ -14,28 +14,39 @@ export const bootstrap = async () => {
 
   setInterval(async () => {
     const settings = await getSettings();
-    
+
     // Always load general UI enhancements
     loadGeneral(settings);
-    
+
     // Load features based on settings
-    if (settings.copyButtonCommitHashes || settings.copyButtonFiles || 
-        settings.copyButtonPrNumbers || settings.copyButtonRebaseSummaries) {
+    if (
+      settings.copyButtonCommitHashes ||
+      settings.copyButtonFiles ||
+      settings.copyButtonPrNumbers ||
+      settings.copyButtonRebaseSummaries
+    ) {
       loadCopyButton(settings);
     }
-    
-    if (settings.disableMergeAll || settings.disableMergeForNonOwners || settings.disableMergeWithFixups) {
+
+    if (
+      settings.disableMergeAll ||
+      settings.disableMergeForNonOwners ||
+      settings.disableMergeWithFixups
+    ) {
       loadDisableMerge(settings);
     }
-    
-    if (settings.documentTitleMergedPrefix || settings.documentTitleTestPrefix) {
+
+    if (
+      settings.documentTitleMergedPrefix ||
+      settings.documentTitleTestPrefix
+    ) {
       loadDocumentTitle(settings);
     }
-    
+
     if (settings.shortcutCopyCurrentBranch || settings.shortcutCopyPrNumber) {
       loadShortcuts(settings);
     }
-    
+
     if (settings.addActionLinks) {
       loadLinks();
     }

@@ -3,6 +3,8 @@ import { type PropsWithChildren, useId } from "react";
 import classes from "./FormControl.module.scss";
 import { FormControlContext } from "./FormControlContext";
 import { FormControlLabel } from "./FormControlLabel";
+import { FormControlDescription } from "./FormControlDescription";
+import { Form } from "formik";
 
 type FormControlProps = PropsWithChildren;
 
@@ -17,3 +19,4 @@ export const FormControl = ({ children }: FormControlProps) => {
 };
 
 FormControl.Label = FormControlLabel;
+FormControl.Description = FormControlDescription;

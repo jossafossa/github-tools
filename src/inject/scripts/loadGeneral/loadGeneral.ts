@@ -4,7 +4,6 @@ import "./loadGeneral.scss";
 
 export const loadGeneral = (settings: AvailableSettings) => {
   if (document.body.dataset.ghtGeneralLoaded) return;
-  log(`Loaded General`);
 
   const classes = new Map<keyof AvailableSettings, string>([
     ["greyOutDependabot", "ght-grey-out-dependabot"],
@@ -21,4 +20,5 @@ export const loadGeneral = (settings: AvailableSettings) => {
   }
 
   document.body.dataset.ghtGeneralLoaded = "true";
+  log(`Loaded General`);
 };

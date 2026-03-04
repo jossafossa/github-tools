@@ -1,251 +1,218 @@
-import type { JSX } from "react/jsx-runtime";
-
 import { type AvailableSettings, useSettings } from "~/api";
-import { Button, Fieldset, FormControl, Input, Toggle } from "~/components";
-
+import {
+  Button,
+  FieldInput,
+  Fieldset,
+  Input,
+  Select,
+  Toggle,
+} from "~/components";
 import classes from "./Settings.module.scss";
-import { Formik } from "formik";
+import * as Yup from "yup";
+
+import { Form, Formik } from "formik";
+import { useTranslation } from "react-i18next";
+
+const getValidationSchema = (t: any) =>
+  Yup.object().shape({
+    userGithubUsername: Yup.string().required(
+      t("validation.username_required"),
+    ),
+    userTestLabels: Yup.string().required(t("validation.test_label_required")),
+    disableMergeAll: Yup.boolean(),
+    disableMergeForNonOwners: Yup.boolean(),
+    disableMergeWithFixups: Yup.boolean(),
+    copyButtonPrNumbers: Yup.boolean(),
+    copyButtonCommitHashes: Yup.boolean(),
+    copyButtonRebaseSummaries: Yup.boolean(),
+    copyButtonFiles: Yup.boolean(),
+    documentTitleMergedPrefix: Yup.string().required(
+      t("validation.merged_prefix_required"),
+    ),
+    documentTitleTestPrefix: Yup.string().required(
+      t("validation.test_prefix_required"),
+    ),
+    greyOutDependabot: Yup.boolean(),
+    greyOutDrafts: Yup.boolean(),
+    showObviousDrafts: Yup.boolean(),
+    showAbsoluteTime: Yup.boolean(),
+    addActionLinks: Yup.boolean(),
+    shortcutCopyCurrentBranch: Yup.string(),
+    shortcutCopyPrNumber: Yup.string(),
+    enableDebugLogging: Yup.boolean(),
+    language: Yup.string().required(t("validation.language_required")),
+  });
 
 export const Settings = () => {
-  const [settings, setSettings] = useSettings();
+  const { value: settings, setValue: setSettings, isLoading } = useSettings();
+  const { t } = useTranslation("settings");
 
-  const handleSubmit = (event: JSX.TargetedEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  if (isLoading) return <div>{t("loading")}</div>;
 
-    const formData = new FormData(event.currentTarget);
-
-    const newSettings: AvailableSettings = {
-      // Copy features
-      copyButtonCommitHashes: formData.get("copyButtonCommitHashes") === "on",
-      copyButtonFiles: formData.get("copyButtonFiles") === "on",
-      copyButtonPrNumbers: formData.get("copyButtonPrNumbers") === "on",
-      copyButtonRebaseSummaries: formData.get("copyButtonRebaseSummaries") === "on",
-      
-      // UI tweaks
-      greyOutDependabot: formData.get("greyOutDependabot") === "on",
-      greyOutDrafts: formData.get("greyOutDrafts") === "on",
-      showObviousDrafts: formData.get("showObviousDrafts") === "on",
-      showAbsoluteTime: formData.get("showAbsoluteTime") === "on",
-      
-      // Document titles
-      documentTitleMergedPrefix: formData.get("documentTitleMergedPrefix") as string,
-      documentTitleTestPrefix: formData.get("documentTitleTestPrefix") as string,
-      
-      // Merge protection
-      disableMergeAll: formData.get("disableMergeAll") === "on",
-      disableMergeForNonOwners: formData.get("disableMergeForNonOwners") === "on",
-      disableMergeWithFixups: formData.get("disableMergeWithFixups") === "on",
-      
-      // Navigation
-      addActionLinks: formData.get("addActionLinks") === "on",
-      
-      // Shortcuts
-      shortcutCopyCurrentBranch: formData.get("shortcutCopyCurrentBranch") as string,
-      shortcutCopyPrNumber: formData.get("shortcutCopyPrNumber") as string,
-      
-      // Debug
-      enableDebugLogging: formData.get("enableDebugLogging") === "on",
-      
-      // User
-      userGithubUsername: formData.get("userGithubUsername") as string,
-      userTestLabels: formData.get("userTestLabels") as string,
-    };
-
-    setSettings(newSettings);
+  const handleSubmit = (values: AvailableSettings) => {
+    setSettings(values);
   };
 
   return (
-    <Formik initialValues={settings} onSubmit={handleSubmit}>
-      <form class={classes.settings} onSubmit={handleSubmit}>
-        <Fieldset title="User settings">
-          <FormControl>
-            <FormControl.Label>Username</FormControl.Label>
-
-            <Input
+    <Formik
+      initialValues={settings}
+      onSubmit={handleSubmit}
+      validationSchema={getValidationSchema(t)}
+    >
+      <Form>
+        <div className={classes.settings}>
+          <Fieldset title={t("merge_protection.title")}>
+            <FieldInput
               name="userGithubUsername"
               type="text"
-              value={settings.userGithubUsername}
+              as={Input}
+              label={t("merge_protection.username")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Test label</FormControl.Label>
-
-            <Input
-              name="userTestLabels" 
-              type="text"
-              value={settings.userTestLabels}
-            />
-          </FormControl>
-        </Fieldset>
-
-        <Fieldset title="Merge protection">
-          <FormControl>
-            <FormControl.Label>Disable all</FormControl.Label>
-
-            <Toggle
-              checked={settings.disableMergeAll}
+            <FieldInput
               name="disableMergeAll"
+              type="checkbox"
+              as={Toggle}
+              label={t("merge_protection.disable_all")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Disable for non-owners</FormControl.Label>
-
-            <Toggle
-              checked={settings.disableMergeForNonOwners}
+            <FieldInput
               name="disableMergeForNonOwners"
+              as={Toggle}
+              label={t("merge_protection.disable_for_non_owners")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Disable with fixups</FormControl.Label>
-
-            <Toggle
-              checked={settings.disableMergeWithFixups}
+            <FieldInput
               name="disableMergeWithFixups"
+              as={Toggle}
+              label={t("merge_protection.disable_with_fixups")}
             />
-          </FormControl>
-        </Fieldset>
+          </Fieldset>
 
-        <Fieldset title="Copy buttons">
-          <FormControl>
-            <FormControl.Label>PR numbers</FormControl.Label>
-
-            <Toggle
-              checked={settings.copyButtonPrNumbers}
+          <Fieldset title={t("copy_buttons.title")}>
+            <FieldInput
               name="copyButtonPrNumbers"
+              as={Toggle}
+              label={t("copy_buttons.pr_numbers")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Commit hashes</FormControl.Label>
-
-            <Toggle
-              checked={settings.copyButtonCommitHashes}
+            <FieldInput
               name="copyButtonCommitHashes"
+              as={Toggle}
+              label={t("copy_buttons.commit_hashes")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Rebase summaries</FormControl.Label>
-
-            <Toggle
-              checked={settings.copyButtonRebaseSummaries}
+            <FieldInput
               name="copyButtonRebaseSummaries"
+              as={Toggle}
+              label={t("copy_buttons.rebase_summaries")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Files</FormControl.Label>
-
-            <Toggle
-              checked={settings.copyButtonFiles}
+            <FieldInput
               name="copyButtonFiles"
+              as={Toggle}
+              label={t("copy_buttons.files")}
             />
-          </FormControl>
-        </Fieldset>
+          </Fieldset>
 
-        <Fieldset title="Document title">
-          <FormControl>
-            <FormControl.Label>Merged prefix</FormControl.Label>
+          <Fieldset title={t("document_title.title")}>
+            <FieldInput
+              name="userTestLabels"
+              type="text"
+              as={Input}
+              label={t("document_title.test_label")}
+              description="PRs with this label will get the test prefix in the document title. Separate multiple labels with a comma."
+            />
 
-            <Input
+            <FieldInput
               name="documentTitleMergedPrefix"
               type="text"
-              value={settings.documentTitleMergedPrefix}
+              as={Input}
+              label={t("document_title.merged_prefix")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Test prefix</FormControl.Label>
-
-            <Input
+            <FieldInput
               name="documentTitleTestPrefix"
               type="text"
-              value={settings.documentTitleTestPrefix}
+              as={Input}
+              label={t("document_title.test_prefix")}
             />
-          </FormControl>
-        </Fieldset>
+          </Fieldset>
 
-        <Fieldset title="UI Tweaks">
-          <FormControl>
-            <FormControl.Label>Grey out dependabot</FormControl.Label>
-
-            <Toggle
-              checked={settings.greyOutDependabot}
+          <Fieldset title={t("ui_tweaks.title")}>
+            <FieldInput
               name="greyOutDependabot"
+              as={Toggle}
+              label={t("ui_tweaks.grey_out_dependabot")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Grey out drafts</FormControl.Label>
-
-            <Toggle
-              checked={settings.greyOutDrafts}
+            <FieldInput
               name="greyOutDrafts"
+              as={Toggle}
+              label={t("ui_tweaks.grey_out_drafts")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Show obvious drafts</FormControl.Label>
-
-            <Toggle
-              checked={settings.showObviousDrafts}
+            <FieldInput
               name="showObviousDrafts"
+              as={Toggle}
+              label={t("ui_tweaks.show_obvious_drafts")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Show absolute time</FormControl.Label>
-
-            <Toggle
-              checked={settings.showAbsoluteTime}
+            <FieldInput
               name="showAbsoluteTime"
+              as={Toggle}
+              label={t("ui_tweaks.show_absolute_time")}
             />
-          </FormControl>
-        </Fieldset>
+          </Fieldset>
 
-        <Fieldset title="Navigation">
-          <FormControl>
-            <FormControl.Label>Add action links</FormControl.Label>
+          <Fieldset title={t("navigation.title")}>
+            <FieldInput
+              name="addActionLinks"
+              as={Toggle}
+              label={t("navigation.add_action_links")}
+            />
+          </Fieldset>
 
-            <Toggle checked={settings.addActionLinks} name="addActionLinks" />
-          </FormControl>
-        </Fieldset>
-
-        <Fieldset title="Shortcuts">
-          <FormControl>
-            <FormControl.Label>Copy current branch</FormControl.Label>
-
-            <Input
+          <Fieldset title={t("shortcuts.title")}>
+            <FieldInput
               name="shortcutCopyCurrentBranch"
               type="text"
-              value={settings.shortcutCopyCurrentBranch}
+              as={Input}
+              label={t("shortcuts.copy_current_branch")}
             />
-          </FormControl>
 
-          <FormControl>
-            <FormControl.Label>Copy PR number</FormControl.Label>
-
-            <Input
+            <FieldInput
               name="shortcutCopyPrNumber"
               type="text"
-              value={settings.shortcutCopyPrNumber}
+              as={Input}
+              label={t("shortcuts.copy_pr_number")}
             />
-          </FormControl>
-        </Fieldset>
+          </Fieldset>
 
-        <Fieldset title="Debug">
-          <FormControl>
-            <FormControl.Label>Enable debug logging</FormControl.Label>
+          <Fieldset title={t("debug.title")}>
+            <FieldInput
+              name="enableDebugLogging"
+              as={Toggle}
+              label={t("debug.enable_debug_logging")}
+            />
+          </Fieldset>
 
-            <Toggle checked={settings.enableDebugLogging} name="enableDebugLogging" />
-          </FormControl>
-        </Fieldset>
+          <Fieldset title={t("localization.title")}>
+            <FieldInput
+              name="language"
+              type="text"
+              as={Select}
+              label={t("localization.language")}
+              options={[
+                { value: "en", label: "English" },
+                { value: "nl", label: "Dutch" },
+              ]}
+            />
+          </Fieldset>
 
-        <Button>Save</Button>
-      </form>
+          <Button type="submit">{t("save")}</Button>
+        </div>
+      </Form>
     </Formik>
   );
 };
