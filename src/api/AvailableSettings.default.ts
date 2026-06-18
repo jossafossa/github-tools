@@ -16,6 +16,7 @@ export const DEFAULT_SETTINGS: AvailableSettings = {
   // Document titles
   documentTitleMergedPrefix: "[MERGED]",
   documentTitleTestPrefix: "[TEST]",
+  documentTitleDraftPrefix: "[DRAFT]",
 
   // Merge protection
   disableMergeAll: true,

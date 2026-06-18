@@ -14,6 +14,8 @@ export const loadDocumentTitle = async (settings: AvailableSettings) => {
     prefix = settings.documentTitleMergedPrefix;
   } else if (status.includes("TEST") && settings.documentTitleTestPrefix) {
     prefix = settings.documentTitleTestPrefix;
+  } else if (status.includes("DRAFT") && settings.documentTitleDraftPrefix) {
+    prefix = settings.documentTitleDraftPrefix;
   }
 
   document.title = `${prefix}${document.title}`;

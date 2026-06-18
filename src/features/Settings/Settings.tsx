@@ -32,6 +32,9 @@ const getValidationSchema = (t: any) =>
     documentTitleTestPrefix: Yup.string().required(
       t("validation.test_prefix_required"),
     ),
+    documentTitleDraftPrefix: Yup.string().required(
+      t("validation.draft_prefix_required"),
+    ),
     greyOutDependabot: Yup.boolean(),
     greyOutDrafts: Yup.boolean(),
     showObviousDrafts: Yup.boolean(),
@@ -136,6 +139,13 @@ export const Settings = () => {
               type="text"
               as={Input}
               label={t("document_title.test_prefix")}
+            />
+
+            <FieldInput
+              name="documentTitleDraftPrefix"
+              type="text"
+              as={Input}
+              label={t("document_title.draft_prefix")}
             />
           </Fieldset>
 

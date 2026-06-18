@@ -20,7 +20,8 @@
     "title": "Document titel",
     "test_label": "Test label",
     "merged_prefix": "Merged voorvoegsel",
-    "test_prefix": "Test voorvoegsel"
+    "test_prefix": "Test voorvoegsel",
+    "draft_prefix": "Draft voorvoegsel"
   },
   "ui_tweaks": {
     "title": "UI Aanpassingen",
@@ -51,6 +52,7 @@
     "test_label_required": "Test label is verplicht",
     "merged_prefix_required": "Merged voorvoegsel is verplicht",
     "test_prefix_required": "Test voorvoegsel is verplicht",
+    "draft_prefix_required": "Draft voorvoegsel is verplicht",
     "language_required": "Taal is verplicht"
   }
 }

@@ -14,6 +14,7 @@ export type AvailableSettings = {
   // Document titles
   documentTitleMergedPrefix: string;
   documentTitleTestPrefix: string;
+  documentTitleDraftPrefix: string;
 
   // Merge protection
   disableMergeAll: boolean;

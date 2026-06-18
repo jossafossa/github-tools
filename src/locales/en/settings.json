@@ -20,7 +20,8 @@
     "title": "Document title",
     "test_label": "Test label",
     "merged_prefix": "Merged prefix",
-    "test_prefix": "Test prefix"
+    "test_prefix": "Test prefix",
+    "draft_prefix": "Draft prefix"
   },
   "ui_tweaks": {
     "title": "UI Tweaks",
@@ -50,6 +51,7 @@
     "username_required": "Username is required",
     "test_label_required": "Test label is required",
     "merged_prefix_required": "Merged prefix is required",
-    "test_prefix_required": "Test prefix is required"
+    "test_prefix_required": "Test prefix is required",
+    "draft_prefix_required": "Draft prefix is required"
   }
 }
