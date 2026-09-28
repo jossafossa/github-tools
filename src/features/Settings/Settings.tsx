@@ -40,6 +40,7 @@ const getValidationSchema = (t: any) =>
     showObviousDrafts: Yup.boolean(),
     showAbsoluteTime: Yup.boolean(),
     addActionLinks: Yup.boolean(),
+    openInboxPrsInNewTab: Yup.boolean(),
     shortcutCopyCurrentBranch: Yup.string(),
     shortcutCopyPrNumber: Yup.string(),
     enableDebugLogging: Yup.boolean(),
@@ -180,6 +181,12 @@ export const Settings = () => {
               name="addActionLinks"
               as={Toggle}
               label={t("navigation.add_action_links")}
+            />
+
+            <FieldInput
+              name="openInboxPrsInNewTab"
+              as={Toggle}
+              label={t("navigation.open_inbox_prs_in_new_tab")}
             />
           </Fieldset>
 

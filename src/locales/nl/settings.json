@@ -32,7 +32,8 @@
   },
   "navigation": {
     "title": "Navigatie",
-    "add_action_links": "Actie links toevoegen"
+    "add_action_links": "Actie links toevoegen",
+    "open_inbox_prs_in_new_tab": "Inbox PRs in nieuw tabblad openen"
   },
   "shortcuts": {
     "title": "Sneltoetsen",

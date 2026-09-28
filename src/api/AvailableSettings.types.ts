@@ -23,6 +23,7 @@ export type AvailableSettings = {
 
   // Navigation
   addActionLinks: boolean;
+  openInboxPrsInNewTab: boolean;
 
   // Shortcuts
   shortcutCopyCurrentBranch: string;

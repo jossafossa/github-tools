@@ -25,6 +25,7 @@ export const DEFAULT_SETTINGS: AvailableSettings = {
 
   // Navigation
   addActionLinks: true,
+  openInboxPrsInNewTab: false,
 
   // Shortcuts
   shortcutCopyCurrentBranch: "CMD+SHIFT+C",

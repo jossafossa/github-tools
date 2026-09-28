@@ -32,7 +32,8 @@
   },
   "navigation": {
     "title": "Navigation",
-    "add_action_links": "Add action links"
+    "add_action_links": "Add action links",
+    "open_inbox_prs_in_new_tab": "Open inbox PRs in a new tab"
   },
   "shortcuts": {
     "title": "Shortcuts",

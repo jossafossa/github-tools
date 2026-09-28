@@ -5,6 +5,7 @@ import {
   loadDisableMerge,
   loadDocumentTitle,
   loadGeneral,
+  loadInboxNewTab,
   loadLinks,
   loadShortcuts,
 } from "./scripts";
@@ -50,5 +51,8 @@ export const bootstrap = async () => {
     if (settings.addActionLinks) {
       loadLinks();
     }
+
+    // Always load, so turning the setting off takes effect without a reload
+    loadInboxNewTab(settings);
   }, 100);
 };
